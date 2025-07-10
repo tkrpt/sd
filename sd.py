@@ -2,7 +2,8 @@
 from os import system
 import requests
 import os.path
-system('rm p.mp3 && cat ss/s| sed "s/[;,]/ /g"| SMG=1 DVNN=1 SKNL=1 ../sv/sv 6 | ffmpeg -f f32le -r 44100 -ac 1 -i - -af "adelay=1s:all=true" p.mp3')
+system('rm p.mp3')
+system('cat ss/s| sed "s/[;,]/ /g"| SMG=1 DVNN=1 SKNL=1 ../sv/sv 6 | ffmpeg -f f32le -r 44100 -ac 1 -i - -af "adelay=1s:all=true" p.mp3')
 ds=open('ss/d','r').read().split('\n')[:-1]
 system('mkdir -p ds')
 for k in range(0,len(ds)):
