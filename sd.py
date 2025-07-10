@@ -1,3 +1,7 @@
 #!/usr/bin/env python3
 from os import system
-system('ffmpeg -f concat -i m -vf "scale=512:512:force_original_aspect_ratio=decrease,pad=720:720:-1:-1" sd.mp4')
+ss=open('ss/s','r').read()
+ds=open('ss/d','r').read().split('\n')
+for k in range(0,len(ds)):
+    system('convert ds/'+str(k)+'.jpg -resize 790x790 -bordercolor white -border 20x20 -gravity center -background black -extent 1080x1080 -gravity North -pointsize 40 -fill grey -font ../sv/kv.ttf -annotate +0+40 "'+str(k)+'"  ds/'+str(k)+'.png')
+system('ffmpeg -f concat -i m sd.mp4')
