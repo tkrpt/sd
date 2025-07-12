@@ -23,7 +23,7 @@ import subprocess
 sknl=open('sknl','r').read().split('\n')[:-1]
 for k in range(0,len(ds)+1):
     if k<len(ds):nk=float(sknl[k])+vk*44100
-    else:nk=(float(subprocess.run(['mp3info','-p','%S','p.mp3'],stdout=subprocess.PIPE).stdout.decode('utf-8'))+1)*44100
+    else:nk=(float(subprocess.run(['ml./kl'],stdout=subprocess.PIPE).stdout.decode('utf-8')[1:-1])+1)*44100
     m=m+'file \'ds/'+str(k)+'.png\'\nduration '+str((nk-dk)/44100)+'\n'
     dk=nk
 open('m','w').write(m)

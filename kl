@@ -1,0 +1,1 @@
+ffprobe -show_streams -print_format json p.mp3 -v fatal | jq '.streams[0].duration'
