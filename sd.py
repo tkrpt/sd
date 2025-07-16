@@ -26,5 +26,6 @@ for k in range(0,len(ds)+1):
     else:nk=(float(subprocess.run(['sh','kl'],stdout=subprocess.PIPE).stdout.decode('utf-8')[1:-2])+5)*44100
     m=m+'file \'ds/'+str(k)+'.png\'\nduration '+str((nk-dk)/44100)+'\n'
     dk=nk
+m=m+'file \'ds/0.png\'\nduration 1\n'
 open('m','w').write(m)
 system('ffmpeg -f concat -i m -i p.mp3 -c:a copy -shortest sd.mp4')
