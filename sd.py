@@ -16,7 +16,7 @@ def lnd(k):
 system('convert -size 1080x1080 xc:black '+lnd(0)+' ds/0.png')
 for k in range(1,len(ds)+1):
     if os.path.isfile('ds/'+str(k)+'.png'):continue
-    system('convert ds/'+str(k)+'.jpg -resize 790x790 -bordercolor white -border 20x20 -gravity center -background black -extent 1080x1080 '+lnd(k)+'  ds/'+str(k)+'.png')
+    system('convert ds/'+str(k)+'.jpg -auto-orient -resize 790x790 -bordercolor white -border 20x20 -gravity center -background black -extent 1080x1080 '+lnd(k)+'  ds/'+str(k)+'.png')
 m=''
 dk=0
 import subprocess
