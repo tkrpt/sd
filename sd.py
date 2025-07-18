@@ -10,7 +10,10 @@ system('mkdir -p ds')
 for k in range(0,len(ds)):
     if os.path.isfile('ds/'+str(k+1)+'.jpg'):continue
     dn=ds[k]
-    system('wget -O ds/'+str(k+1)+'.jpg "https://commons.m.wikimedia.org/wiki/Special:FilePath/'+requests.get(f"https://www.wikidata.org/wiki/Special:EntityData/{dn}.json").json()["entities"][dn]["claims"]["P18"][0]["mainsnak"]["datavalue"]["value"].replace(' ', '_')+'"')
+    if dn.startswith('Q'):
+        dn='"https://commons.m.wikimedia.org/wiki/Special:FilePath/'+requests.get(f"https://www.wikidata.org/wiki/Special:EntityData/{dn}.json").json()["entities"][dn]["claims"]["P18"][0]["mainsnak"]["datavalue"]["value"].replace(' ', '_')+'"'
+    else: dn='"'+dn+'"'
+    system('wget -O ds/'+str(k+1)+'.jpg '+dn)
 def lnd(k):
     return '-gravity North -pointsize 40 -fill khaki -font ../sv/kv.ttf -annotate +0+40 "'+str(k).zfill(len(str(len(ds))))+'"'
 system('convert -size 1080x1080 xc:black '+lnd(0)+' ds/0.png')
