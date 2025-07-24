@@ -10,8 +10,9 @@ system('mkdir -p ds')
 for k in range(0,len(ds)):
     if os.path.isfile('ds/'+str(k+1)+'.jpg'):continue
     dn=ds[k]
-    if k>0 and ds[k]==ds[k-1]:
+    if dn=='-':
         system('cp ds/'+str(k)+'.jpg ds/'+str(k+1)+'.jpg')
+        continue
     if dn.startswith('Q'):
         dn='"https://commons.m.wikimedia.org/wiki/Special:FilePath/'+requests.get(f"https://www.wikidata.org/wiki/Special:EntityData/{dn}.json").json()["entities"][dn]["claims"]["P18"][0]["mainsnak"]["datavalue"]["value"].replace(' ', '_')+'"'
     else: dn='"'+dn+'"'
